@@ -1,4 +1,10 @@
-FROM openjdk:8
-EXPOSE 8080
-ADD target/devops-integration.jar devops-integration.jar
-ENTRYPOINT ["java","-jar","/devops-integration.jar"]
+FROM nginx:latest
+
+# Copy your custom Nginx configuration file (if needed)
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Expose the port for Nginx
+EXPOSE 80
+
+# Define the command to run Nginx
+CMD ["nginx", "-g", "daemon off;"]
